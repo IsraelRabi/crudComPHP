@@ -50,6 +50,9 @@
     </div>
 
     <div class="container">
+        <div style="display:none;" class="mensagem">
+            <?php echo $_SESSION['mensagem']; ?>
+        </div>
         <div class="bem-vindo">
             <h1>Seja bem-vindo</h1>
             <p><?php echo $dados['nome']; ?></p>
@@ -73,11 +76,20 @@
         const editar = document.querySelector(".editar")
         const voltar = document.querySelector(".btn-voltar")
 
+        const mensagem = document.querySelector(".mensagem")
         const formDeletar = document.querySelector(".form-deletar")
         const delSim = document.querySelector(".certeza-opt-sim")
         const delNao = document.querySelector(".certeza-opt-nao")
         const container = document.querySelector(".container")
         const temCerteza = document.querySelector(".tem-certeza")
+
+        window.onload = () => {
+            mensagem.style.display = 'block';
+            setTimeout(() => {
+                mensagem.style.display = 'none';
+            }, 1000);
+
+        };
 
         btnSair.addEventListener("click", () => location.href = "phpAction/logout.php")
         btnEditar.addEventListener("click", () => {

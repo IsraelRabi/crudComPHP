@@ -110,3 +110,11 @@ body {
     margin-top: 10px;
     cursor: pointer;
 }
+
+.mensagem {
+    position: absolute;
+    top: -40px;
+    width: 290px;
+    text-align: center;
+    padding: 10px;
+}

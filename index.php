@@ -15,7 +15,7 @@
 
 <body>
     <div class="container">
-        <div>
+        <div style="display:none;" class="mensagem">
             <?php echo $_SESSION['mensagem']; ?>
         </div>
         <div class="option">
@@ -49,6 +49,15 @@
         const optRegister = document.querySelector(".register-option")
         const formLogin = document.querySelector(".form-login")
         const formRegister = document.querySelector(".form-register")
+        const mensagem = document.querySelector(".mensagem")
+        
+        window.onload = () => {
+            mensagem.style.display = 'block';
+            setTimeout(() => {
+                mensagem.style.display = 'none';
+            }, 1000);
+
+        };
 
         optLogin.addEventListener("click", () => {
             optLogin.classList.add("login");

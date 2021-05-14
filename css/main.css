@@ -20,6 +20,7 @@ body {
 
 .container {
     background-color: #274754;
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 300px;
@@ -64,4 +65,12 @@ body {
 .register {
     background-color: #203B46;
     border-radius: 0 10px 0 0;
+}
+
+.container > .mensagem {
+    position: absolute;
+    top: -40px;
+    width: 290px;
+    text-align: center;
+    padding: 10px;
 }
