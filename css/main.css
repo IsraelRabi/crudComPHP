@@ -52,6 +52,10 @@ body {
     outline: 0;
 }
 
+.forms button {
+    cursor: pointer;
+}
+
 .login {
     background-color: #203B46;
     border-radius: 10px 0 0 0;

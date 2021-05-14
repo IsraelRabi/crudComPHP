@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
+<?php
+    session_start();
+?>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,27 +15,30 @@
 
 <body>
     <div class="container">
+        <div>
+            <?php echo $_SESSION['mensagem']; ?>
+        </div>
         <div class="option">
             <div class="login-option login">Login</div>
-            <div class="register-option">Register</div>
+            <div class="register-option">Registrar</div>
         </div>
 
         <div class="forms">
             <div class="form-login">
                 <form action="phpAction/login.php" method="POST">
-                    <input type="text" name="user" placeholder="User/Email" required>
-                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="text" name="usuario" placeholder="Usuário/Email:" required>
+                    <input type="password" name="senha" placeholder="Senha:" required>
                     <button type="submit" name="btn-login">Login</button>
                 </form>
             </div>
 
             <div class="form-register" style="display: none;">
                 <form action="phpAction/create.php" method="POST">
-                    <input type="text" name="user" placeholder="User" required>
-                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="text" name="usuario" placeholder="Usuário:" required>
+                    <input type="text" name="nome" placeholder="Nome:" required>
                     <input type="email" name="email" placeholder="Email" required>
-                    <input type="password" name="password" placeholder="Password" required>
-                    <button type="submit" name="btn-register">Register</button>
+                    <input type="password" name="senha" placeholder="Senha:" required>
+                    <button type="submit" name="btn-registrar">Registrar</button>
                 </form>
             </div>
         </div>
