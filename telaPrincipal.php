@@ -9,7 +9,6 @@
         $id = $_SESSION["id"];
         $sql = "SELECT * FROM usuarios WHERE id = '$id'";
         $dados = mysqli_fetch_array(mysqli_query($connect, $sql));
-
     }
 ?>
 <head>
@@ -40,6 +39,7 @@
     <div style="display:none;" class="editar">
         <div class="form-register">
             <form action="phpAction/update.php" method="POST">
+                <input type="hidden" name="id" value="<?php echo $dados['id'];?>" required>
                 <input type="text" name="usuario" placeholder="Usuário:" value="<?php echo $dados['usuario'];?>" required>
                 <input type="text" name="nome" placeholder="Nome:" value="<?php echo $dados['nome'];?>" required>
                 <input type="email" name="email" placeholder="Email:" value="<?php echo $dados['email'];?>" required>
