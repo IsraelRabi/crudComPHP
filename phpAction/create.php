@@ -1,5 +1,5 @@
 <?php
-require "dbConnect.php";
+require_once "dbConnect.php";
 
 if(isset($_POST["btn-registrar"])) {
     $usuario = clearInput($connect, $_POST["usuario"]);
