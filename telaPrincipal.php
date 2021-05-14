@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+<?php
+    require_once "phpAction/dbConnect.php";
+    session_start();
+    if(!isset($_SESSION['logado'])){
+        header("Location: index.php");
+    }else {
+        $id = $_SESSION["id"];
+        $sql = "SELECT * FROM usuarios WHERE id = '$id'";
+        $dados = mysqli_fetch_array(mysqli_query($connect, $sql));
 
+    }
+?>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bem-vindo <?php echo "opa"; ?></title>
+    <title>Bem-vindo <?php echo $dados['nome'];?></title>
     <link rel="stylesheet" href="css/telaPrincipal.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
@@ -18,6 +29,7 @@
             <div class="certeza-opt-sim">
                 <form class="form-deletar" action="phpAction/delete.php" method="POST">
                     <input type="hidden" name="id" value="<?php echo "lkjsadlfjsdkl"; ?>">
+                    <input type="hidden" name="btn-sim">
                     <div class="certeza-opt-sim">SIM</div>
                 </form>
             </div>
@@ -25,26 +37,26 @@
         </div>
     </div>
 
-    <div class="editar">
+    <div style="display:none;" class="editar">
         <div class="form-register">
             <form action="phpAction/update.php" method="POST">
-                <input type="text" name="usuario" placeholder="Usuário:" value="<?php echo "teste";?>" required>
-                <input type="text" name="nome" placeholder="Nome:" required>
-                <input type="email" name="email" placeholder="Email:" required>
+                <input type="text" name="usuario" placeholder="Usuário:" value="<?php echo $dados['usuario'];?>" required>
+                <input type="text" name="nome" placeholder="Nome:" value="<?php echo $dados['nome'];?>" required>
+                <input type="email" name="email" placeholder="Email:" value="<?php echo $dados['email'];?>" required>
                 <button type="submit" name="btn-alterar">Alterar</button>
             </form>
         </div>
         <div class="btn-voltar">Voltar</div>
     </div>
 
-    <div style="display:none;" class="container">
+    <div class="container">
         <div class="bem-vindo">
             <h1>Seja bem-vindo</h1>
-            <p><?php echo "opa"; ?></p>
+            <p><?php echo $dados['nome']; ?></p>
         </div>
         <div class="infos">
-            <p>Usuário: <?php echo "opazinho"; ?></p>
-            <p>Email: <?php echo "opa@gmail.com"; ?></p>
+            <p>Usuário: <?php echo $dados['usuario']; ?></p>
+            <p>Email: <?php echo $dados['email']; ?></p>
         </div>
         <div class="btns">
             <div class="btn-sair">Sair</div>
@@ -67,7 +79,7 @@
         const container = document.querySelector(".container")
         const temCerteza = document.querySelector(".tem-certeza")
 
-        btnSair.addEventListener("click", () => location.href = "phpAction/sair.php")
+        btnSair.addEventListener("click", () => location.href = "phpAction/logout.php")
         btnEditar.addEventListener("click", () => {
             editar.style.display = "block";
             container.style.display = "none";

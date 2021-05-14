@@ -8,7 +8,7 @@ if(isset($_POST["btn-registrar"])) {
     $senha = password_hash(clearInput($connect, $_POST["senha"]), PASSWORD_DEFAULT);
 
     
-    $sql = "SELECT usuario FROM usuarios WHERE usuario = '$usuario'";
+    $sql = "SELECT usuario FROM usuarios WHERE usuario = '$usuario' OR email = '$email'";
     $resultado = mysqli_query($connect, $sql);
     mysqli_close();
 
